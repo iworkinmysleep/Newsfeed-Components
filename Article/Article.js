@@ -112,3 +112,38 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+  const article = document.createElement('div');
+  console.log('article object')
+  const articleTitle = document.createElement('h3');
+  const articleDate = document.createElement('p');
+  const articleFirst = document.createElement('p');
+  const articleSecond = document.createElement('p');
+  const articleThird = document.createElement('p');
+  const articleExpand = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirst);
+  article.appendChild(articleSecond);
+  article.appendChild(articleThird);
+  article.appendChild(articleExpand);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleExpand.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirst.textContent = firstParagraph;
+  articleSecond.textContent = secondParagraph;
+  articleThird.textContent = thirdParagraph;
+
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+// const articleComponent = createArticle('test title', 'test date', 'test firstParagraph', 'test secondParagraph', 'test thirdParagraph');
+// articles.appendChild(articleComponent);
+articles.appendChild(createArticle(data[0].title), (data[0].date), (data[0].firstParagraph), (data[0].secondParagraph), (data[0].thirdParagraph))
