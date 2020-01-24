@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title:'New Article',
+    date: 'Jan 22 2020',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -114,7 +130,6 @@ const data = [
 */
 const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
   const article = document.createElement('div');
-  console.log('article object')
   const articleTitle = document.createElement('h3');
   const articleDate = document.createElement('p');
   const articleFirst = document.createElement('p');
@@ -138,12 +153,19 @@ const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagr
   articleFirst.textContent = firstParagraph;
   articleSecond.textContent = secondParagraph;
   articleThird.textContent = thirdParagraph;
+  articleExpand.textContent = 'Open';
 
+  articleExpand.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
 
   return article;
 }
 
 const articles = document.querySelector('.articles');
-// const articleComponent = createArticle('test title', 'test date', 'test firstParagraph', 'test secondParagraph', 'test thirdParagraph');
-// articles.appendChild(articleComponent);
-articles.appendChild(createArticle(data[0].title), (data[0].date), (data[0].firstParagraph), (data[0].secondParagraph), (data[0].thirdParagraph))
+
+data.forEach(item => {
+  const newArticle =
+  createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph);
+  articles.appendChild(newArticle);
+})
